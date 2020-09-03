@@ -1,0 +1,45 @@
+@import 'styles/colors';
+
+.button {
+  user-select: none;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 300;
+  border-radius: 3px;
+  background-color: $light-blue;
+  line-height: 30px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &_disabled {
+    cursor: not-allowed;
+    opacity: .8;
+  }
+
+  &_primary {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    height: 40px;
+  }
+  
+  &_link {
+    background-color: unset;
+    text-decoration: underline;
+  }
+
+  &_red {
+    color: $mexican-red;
+  }
+
+  &_blue {
+    color: $azure-radiance;
+  }
+}
