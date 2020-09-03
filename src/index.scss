@@ -1,7 +1,10 @@
+@import 'styles/colors';
+
 * {
   box-sizing: border-box;
-  font-family: 'Roboto';
+  font-family: Roboto;
 }
+
 body {
   margin: 0;
 }
@@ -11,7 +14,8 @@ body {
   width: 100vw;
   position: relative;
 }
+
 html {
   font-size: 14px;
-  background-color: #e5e8ed;
+  background-color: $background;
 }
