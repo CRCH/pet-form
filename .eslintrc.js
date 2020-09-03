@@ -31,6 +31,8 @@ module.exports = {
     },
   },
   rules: {
+    'react/jsx-props-no-spreading': 0,
+    'no-unused-vars': 0,
     'react/prop-types': 0,
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'import/extensions': ['error', 'ignorePackages', {
