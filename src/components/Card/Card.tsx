@@ -5,7 +5,7 @@ import cn from 'classnames';
 import './Card.scss';
 
 export interface CardProps {
-  className?: String;
+  className?: string;
   children?: ReactNode | string;
 }
 

@@ -31,6 +31,7 @@ module.exports = {
     },
   },
   rules: {
+    'react/no-array-index-key': 0,
     'jsx-a11y/click-events-have-key-events': 0,
     'react/jsx-props-no-spreading': 0,
     'no-unused-vars': 0,

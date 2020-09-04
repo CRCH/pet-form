@@ -5,7 +5,7 @@ import cn from 'classnames';
 import './Input.scss';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
-  errorMessage?: String;
+  errorMessage?: string;
 }
 
 const Input: FC<InputProps> = ({

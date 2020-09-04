@@ -1,0 +1,77 @@
+@import 'styles/colors';
+
+.table {
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 300;
+  overflow: hidden;
+  border-bottom: 1px solid $ghost;
+
+  .table__body {
+    border-right: 1px solid $ghost;
+    border-left: 1px solid $ghost;
+    background: white;
+    display: flex;
+    flex-direction: column;
+  }
+
+  
+
+  .table__cell {
+    display: flex;
+    width: 1px;
+    flex: 1 0 100px;
+    align-items: center;
+    height: 30px;
+    padding: 0 15px;
+    color: $trout;
+    overflow: scroll;
+  }
+
+  .table__header {
+    display: flex;
+    background: $blue;
+    font-size: 14px;
+
+    .table__cell {
+      color: white;
+      overflow-x: scroll;
+    }
+  }
+
+  .table__row {
+    display: flex;
+
+    &:last-child {
+      .table__cell {
+        border-bottom: none;
+      }
+    }
+
+    .table__cell {
+      border-right: 1px solid $ghost;
+      border-bottom: 1px solid $ghost;
+    }
+
+    .table__cell:last-child {
+      border-right: none;
+    }
+  }
+
+  .table__placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    font-weight: bold;
+    font-size: 16px;
+    color: $ghost;
+  }
+}
+
+.span {
+  max-width: 100%;
+  height: 100;
+}
