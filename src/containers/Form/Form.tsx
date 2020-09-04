@@ -37,7 +37,7 @@ const Form: FC<FormProps> = ({
   className,
   isEdit,
   onSubmit: handleSave,
-  initialValues,
+  initialValues = defaultValues,
 }) => {
   const [person, setPerson] = useState(defaultValues);
   const [errors, setErrors] = useState<ErrorsType>({});
@@ -60,11 +60,9 @@ const Form: FC<FormProps> = ({
   };
 
   useEffect(() => {
-    if (initialValues && isEdit) {
-      setPerson(initialValues);
-      setErrors({});
-    }
-  }, [initialValues, isEdit]);
+    setErrors({});
+    setPerson(initialValues);
+  }, [initialValues]);
 
   return (
     <Card className={cn('form-card', className)}>

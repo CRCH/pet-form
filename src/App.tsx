@@ -1,4 +1,10 @@
-import React, { useState } from 'react';
+import React, {
+  useState, useRef, useEffect,
+} from 'react';
+import {
+  Observable, fromEvent, from, merge,
+} from 'rxjs';
+import { tap, map, mapTo } from 'rxjs/operators';
 // components
 import Button from 'components/Button';
 import Table from 'components/Table';
@@ -14,12 +20,46 @@ import './App.scss';
 // TODO: split code/add rx
 // memoize/callbacks things
 
+const clickSource$ = fromEvent<MouseEvent>(document, 'click').pipe(
+  map(((event) => event.composedPath())),
+);
+
+const keySource$ = fromEvent<KeyboardEvent>(window, 'keyup').pipe(
+  map((event) => event.keyCode === 27),
+);
+
 const initialEditState: { tableId: number, userId?: string } = { tableId: 0, userId: undefined };
 
 const App = () => {
   const [{ tableId, userId }, setEditState] = useState(initialEditState);
   const isEdit = userId !== undefined;
+  const [editEntity, setEditEntity] = useState<Person>();
   const [userTables, setUserTables] = useState<Person[][]>([[]]);
+  const formRef = useRef<HTMLDivElement>(null);
+  const tablesRef = useRef<HTMLDivElement>(null);
+
+  const handleFormReset = () => {
+    setEditState(initialEditState);
+    setEditEntity(undefined);
+  };
+
+  useEffect(() => {
+    const subKey = keySource$;
+    const subClick = clickSource$.pipe(
+      map((val: EventTarget[]) => {
+        const isClickedOutside = formRef.current
+          && tablesRef.current
+          && !val.includes(formRef.current)
+          && !val.includes(tablesRef.current);
+        return isClickedOutside;
+      }),
+    );
+
+    const eventSub = merge(subClick, subKey).subscribe((isResetSignal) => {
+      if (isResetSignal) handleFormReset();
+    });
+    return () => eventSub.unsubscribe();
+  }, []);
 
   const handleRowDelete = (tableIdx: number, userIdx: string) => {
     // TODO: Add confirm
@@ -32,12 +72,19 @@ const App = () => {
     ]);
   };
 
-  const renderButtonsColumn = (tableIdx: number): ColumnRendererType<Person> => ({ id }) => (
-    <div className="button-column">
-      <Button title="Edit" isLink isBlue onClick={() => setEditState({ tableId: tableIdx, userId: id })} />
-      <Button title="Delete" isLink isRed onClick={() => handleRowDelete(tableIdx, id)} />
-    </div>
-  );
+  const renderButtonsColumn = (tableIdx: number): ColumnRendererType<Person> => ({ id }) => {
+    const handleOnEdit = () => {
+      setEditState({ tableId: tableIdx, userId: id });
+      setEditEntity(userTables[tableId]?.find(({ id: _id }) => id === _id));
+    };
+
+    return (
+      <div className="button-column">
+        <Button title="Edit" isLink isBlue onClick={handleOnEdit} />
+        <Button title="Delete" isLink isRed onClick={() => handleRowDelete(tableIdx, id)} />
+      </div>
+    );
+  };
 
   const columns = (tableIdx: number) => [
     { label: 'Name', dataPath: 'name' },
@@ -88,34 +135,36 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <div className="app-container__form">
+      <div className="app-container__form" ref={formRef}>
         <Form
           onSubmit={handleFormSubmit}
           isEdit={isEdit}
-          initialValues={userTables[tableId]?.find(({ id }) => userId === id)}
+          initialValues={editEntity}
         />
       </div>
-      {userTables.map((tableData, idx) => {
-        const isParentTable = idx === 0;
-        const handleDelete = () => (!isParentTable
-          ? handleTableDelete(idx) : handleClearParentTable());
-        return (
-          <div key={`table-${idx}`} className="table-wrapper">
-            <div className="table-wrapper__buttons">
-              {isParentTable && (
-                <Button
-                  className="table-wrapper__copy-button"
-                  title="CopyTable"
-                  onClick={handleCopyTable}
-                  isDisabled={!userTables[0].length}
-                />
-              )}
-              <CrossIcon className="table-wrapper__cross" onClick={handleDelete} />
+      <div ref={tablesRef}>
+        {userTables.map((tableData, idx) => {
+          const isParentTable = idx === 0;
+          const handleDelete = () => (!isParentTable
+            ? handleTableDelete(idx) : handleClearParentTable());
+          return (
+            <div key={`table-${idx}`} className="table-wrapper">
+              <div className="table-wrapper__buttons">
+                {isParentTable && (
+                  <Button
+                    className="table-wrapper__copy-button"
+                    title="CopyTable"
+                    onClick={handleCopyTable}
+                    isDisabled={!userTables[0].length}
+                  />
+                )}
+                <CrossIcon className="table-wrapper__cross" onClick={handleDelete} />
+              </div>
+              <Table columns={columns(idx)} data={tableData} />
             </div>
-            <Table columns={columns(idx)} data={tableData} />
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 };
