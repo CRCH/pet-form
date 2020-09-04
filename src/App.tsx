@@ -1,10 +1,8 @@
 import React, {
   useState, useRef, useEffect,
 } from 'react';
-import {
-  Observable, fromEvent, from, merge,
-} from 'rxjs';
-import { tap, map, mapTo } from 'rxjs/operators';
+import { fromEvent, merge,} from 'rxjs';
+import { map } from 'rxjs/operators';
 // components
 import Button from 'components/Button';
 import Table from 'components/Table';
