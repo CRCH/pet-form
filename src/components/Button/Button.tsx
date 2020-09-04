@@ -1,4 +1,4 @@
-import React, { FC, InputHTMLAttributes } from 'react';
+import React, { FC } from 'react';
 // utils
 import cn from 'classnames';
 // styles
@@ -12,6 +12,7 @@ interface ButtonProps {
   isRed?: boolean,
   isDisabled?: boolean,
   isLink?: boolean,
+  className?: string;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -22,6 +23,7 @@ const Button: FC<ButtonProps> = ({
   isBlue,
   isRed,
   isLink,
+  className,
 }) => (
   <div
     role="button"
@@ -29,6 +31,7 @@ const Button: FC<ButtonProps> = ({
     onClick={() => !isDisabled && onClick()}
     className={cn(
       'button',
+      className,
       isPrimary && 'button_primary',
       isBlue && 'button_blue',
       isRed && 'button_red',

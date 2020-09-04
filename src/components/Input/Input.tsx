@@ -22,7 +22,7 @@ const Input: FC<InputProps> = ({
       className,
     )}
   >
-    <input className="input__field-input" {...rest} />
+    <input className="input__field-input" onChange={onChange} value={value} {...rest} />
     {errorMessage && (
       <span className="input__error-message">
         {errorMessage}

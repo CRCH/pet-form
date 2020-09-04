@@ -1,19 +1,14 @@
-import React, { FC } from 'react';
+import React from 'react';
 // types
-import { Column, TableProps } from './Table.types'
+import { TableProps } from './Table.types';
 // styles
 import './Table.scss';
 
-
-// const data = true;
 const Table = <T extends object>({
   data,
   columns,
-}: TableProps<T>) => {
-
-  const labels = columns.map(({ label }) => label);
-
-  return (
+}: TableProps<T>) => (
+  <div className="table-container">
     <div className="table">
       <div className="table__header">
         {columns.map(({ label }, idx) => (
@@ -33,12 +28,14 @@ const Table = <T extends object>({
             ))}
           </div>
         ))}
-        {!data && (
-          <div className="table__placeholder">No data to display :(</div>
+        {!data.length && (
+          <div className="table__placeholder">
+            No data to display :(
+          </div>
         )}
       </div>
     </div>
+  </div>
   );
-};
 
 export default Table;

@@ -1,9 +1,44 @@
+@import 'styles/colors';
+
 .app-container {
   padding: 45px;
+  max-width: 1024px;
+  min-width: 376px;
+  overflow: hidden;
+
+  &__form {
+    width: 280px;
+    margin-bottom: 40px;
+
+    @media screen and (max-width: 678px) {
+      margin: 0 auto 40px;
+    }
+  }
 }
 
 .button-column {
   display: flex;
   flex-grow: 1;
   justify-content: space-evenly;
+}
+
+.table-wrapper {
+  overflow: scroll;
+
+  &__buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 13px;
+}
+  
+  &__copy-button {
+    width: 90px;
+  }
+
+  &__cross {
+    color: $flamingo;
+    margin-left: 25px;
+    cursor: pointer;
+  }
 }

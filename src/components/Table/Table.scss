@@ -1,5 +1,9 @@
 @import 'styles/colors';
 
+.table-container {
+  overflow: scroll;
+}
+
 .table {
   display: flex;
   flex-direction: column;
@@ -7,6 +11,7 @@
   font-size: 12px;
   font-weight: 300;
   overflow: hidden;
+  min-width: 595px;
   border-bottom: 1px solid $ghost;
 
   .table__body {
@@ -16,8 +21,6 @@
     display: flex;
     flex-direction: column;
   }
-
-  
 
   .table__cell {
     display: flex;

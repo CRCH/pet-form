@@ -1,0 +1,14 @@
+.form-card {
+  &__input {
+    margin-bottom: 20px;
+  }
+
+  &__button-wrapper {
+    margin-top: 30px;
+    display: flex;
+  }
+
+  &__button {
+    width: 100%;
+  }
+}
