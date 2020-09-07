@@ -23,7 +23,7 @@
 }
 
 .table-wrapper {
-  overflow: scroll;
+  overflow-x: auto;
 
   &__buttons {
     display: flex;

@@ -1,7 +1,7 @@
 import React, {
   useState, useRef, useEffect,
 } from 'react';
-import { fromEvent, merge,} from 'rxjs';
+import { fromEvent, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
 // components
 import Button from 'components/Button';
