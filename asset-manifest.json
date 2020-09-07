@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/pet-form/static/css/main.3679fdc1.chunk.css",
+    "main.css": "/pet-form/static/css/main.daa6d4c5.chunk.css",
     "main.js": "/pet-form/static/js/main.31a6df77.chunk.js",
     "main.js.map": "/pet-form/static/js/main.31a6df77.chunk.js.map",
     "runtime-main.js": "/pet-form/static/js/runtime-main.3f3261f2.js",
@@ -8,16 +8,16 @@
     "static/js/2.9dfbae87.chunk.js": "/pet-form/static/js/2.9dfbae87.chunk.js",
     "static/js/2.9dfbae87.chunk.js.map": "/pet-form/static/js/2.9dfbae87.chunk.js.map",
     "index.html": "/pet-form/index.html",
-    "precache-manifest.c0a0e62f896a5b0992632072d5fc483e.js": "/pet-form/precache-manifest.c0a0e62f896a5b0992632072d5fc483e.js",
+    "precache-manifest.5fa8ad8f43c51c47c9eb28a020cccbe5.js": "/pet-form/precache-manifest.5fa8ad8f43c51c47c9eb28a020cccbe5.js",
     "service-worker.js": "/pet-form/service-worker.js",
-    "static/css/main.3679fdc1.chunk.css.map": "/pet-form/static/css/main.3679fdc1.chunk.css.map",
+    "static/css/main.daa6d4c5.chunk.css.map": "/pet-form/static/css/main.daa6d4c5.chunk.css.map",
     "static/js/2.9dfbae87.chunk.js.LICENSE.txt": "/pet-form/static/js/2.9dfbae87.chunk.js.LICENSE.txt",
     "static/media/cross.4811ac36.svg": "/pet-form/static/media/cross.4811ac36.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.3f3261f2.js",
     "static/js/2.9dfbae87.chunk.js",
-    "static/css/main.3679fdc1.chunk.css",
+    "static/css/main.daa6d4c5.chunk.css",
     "static/js/main.31a6df77.chunk.js"
   ]
 }
