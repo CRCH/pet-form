@@ -13,22 +13,33 @@ const Input: FC<InputProps> = ({
   errorMessage,
   className,
   value,
+  pattern = '.*',
   ...rest
-}) => (
-  <div
-    className={cn(
-      'input',
-      errorMessage && 'input_with-error',
-      className,
-    )}
-  >
-    <input className="input__field-input" onChange={onChange} value={value} {...rest} />
-    {errorMessage && (
-      <span className="input__error-message">
-        {errorMessage}
-      </span>
-    )}
-  </div>
-);
+}) => {
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const regex = new RegExp(`${pattern}`);
+
+    if (onChange && (e.target.value === '' || regex.test(e.target.value))) {
+      onChange(e);
+    }
+  };
+
+  return (
+    <div
+      className={cn(
+        'input',
+        errorMessage && 'input_with-error',
+        className,
+      )}
+    >
+      <input className="input__field-input" onChange={handleOnChange} value={value} {...rest} />
+      {errorMessage && (
+        <span className="input__error-message">
+          {errorMessage}
+        </span>
+      )}
+    </div>
+  );
+};
 
 export default Input;

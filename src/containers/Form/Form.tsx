@@ -64,31 +64,35 @@ const Form: FC<FormProps> = ({
     setPerson(initialValues);
   }, [initialValues]);
 
+  const clearErrors = () => setErrors({});
+
   return (
     <Card className={cn('form-card', className)}>
       <Input
         className="form-card__input"
         value={name}
         errorMessage={errors?.name}
-        onFocus={() => setErrors({})}
+        onFocus={clearErrors}
         onChange={handleOnChange('name')}
         placeholder="Name"
-
+        pattern="^[\w\s-]{0,128}$"
       />
       <Input
         className="form-card__input"
         value={surname}
         onChange={handleOnChange('surname')}
         placeholder="Surname"
-        onFocus={() => setErrors({})}
+        onFocus={clearErrors}
         errorMessage={errors?.surname}
+        pattern="^[\w\s-]{0,128}$"
       />
       <Input
         className="form-card__input"
         value={age}
         onChange={handleOnChange('age')}
         placeholder="Age"
-        onFocus={() => setErrors({})}
+        pattern="^[0-9]{0,3}$"
+        onFocus={clearErrors}
         errorMessage={errors?.age}
       />
       <Input
@@ -96,7 +100,8 @@ const Form: FC<FormProps> = ({
         value={city}
         onChange={handleOnChange('city')}
         placeholder="City"
-        onFocus={() => setErrors({})}
+        pattern="^[\w\s-]{0,128}$"
+        onFocus={clearErrors}
         errorMessage={errors?.city}
       />
       <div className="form-card__button-wrapper">

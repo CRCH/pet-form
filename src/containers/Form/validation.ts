@@ -1,4 +1,4 @@
-import { Person } from "components/Table/Table.types";
+import { Person } from 'components/Table/Table.types';
 
 import { ErrorsType } from './Form';
 

@@ -15,26 +15,25 @@ import { ReactComponent as CrossIcon } from 'icons/cross.svg';
 // styles
 import './App.scss';
 
-// TODO: split code/add rx
-// memoize/callbacks things
+const ESC = 'Escape';
 
 const clickSource$ = fromEvent<MouseEvent>(document, 'click').pipe(
   map(((event) => event.composedPath())),
 );
 
 const keySource$ = fromEvent<KeyboardEvent>(window, 'keyup').pipe(
-  map((event) => event.keyCode === 27),
+  map((event) => event.code === ESC),
 );
 
 const initialEditState: { tableId: number, userId?: string } = { tableId: 0, userId: undefined };
 
 const App = () => {
   const [{ tableId, userId }, setEditState] = useState(initialEditState);
-  const isEdit = userId !== undefined;
   const [editEntity, setEditEntity] = useState<Person>();
   const [userTables, setUserTables] = useState<Person[][]>([[]]);
   const formRef = useRef<HTMLDivElement>(null);
   const tablesRef = useRef<HTMLDivElement>(null);
+  const isEdit = userId !== undefined;
 
   const handleFormReset = () => {
     setEditState(initialEditState);
@@ -66,7 +65,6 @@ const App = () => {
       ...userTables.slice(0, tableIdx),
       ...(newTable.length || tableIdx === 0 ? [newTable] : []),
       ...userTables.slice(tableIdx + 1),
-
     ]);
   };
 
